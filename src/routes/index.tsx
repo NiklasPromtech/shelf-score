@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-const EMAIL = "hej@shelfscore.se"; // TODO: byt till Niklas riktiga adress
+const EMAIL = "tommyandersson@gmail.com";
 const MAILTO = `mailto:${EMAIL}?subject=ShelfScore%20%E2%80%93%20lagerbortfall`;
 
 export const Route = createFileRoute("/")({
