@@ -27,18 +27,7 @@ export const Route = createFileRoute("/")({
 function Landing() {
   return (
     <div className="min-h-screen bg-background font-sans text-foreground antialiased">
-      {/* Header */}
-      <header className="mx-auto flex max-w-3xl items-center justify-between px-6 py-6">
-        <span className="text-sm font-bold tracking-tight">
-          Shelf<span className="text-ok">Score</span>
-        </span>
-        <a
-          href={MAILTO}
-          className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-        >
-          Kontakt →
-        </a>
-      </header>
+      <SiteHeader />
 
       <main className="mx-auto max-w-3xl px-6">
         {/* Hero */}
