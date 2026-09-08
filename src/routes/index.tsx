@@ -28,7 +28,7 @@ export const Route = createFileRoute("/")({
 
 function Landing() {
   return (
-    <div className="dark min-h-screen bg-background font-sans text-foreground antialiased">
+    <div className="min-h-screen bg-background font-sans text-foreground antialiased">
       {/* Header */}
       <header className="mx-auto flex max-w-3xl items-center justify-between px-6 py-6">
         <span className="text-sm font-bold tracking-tight">
@@ -109,7 +109,7 @@ function Landing() {
           </div>
 
           <div className="grid gap-4 md:grid-cols-3">
-            <div className="rounded-xl border border-border bg-card p-6">
+            <div className="rounded-xl border border-border bg-muted/40 p-6">
               <p className="mb-1 text-xs font-bold uppercase tracking-widest text-ok">
                 Före
               </p>
@@ -119,7 +119,7 @@ function Landing() {
                 brukar.
               </p>
             </div>
-            <div className="rounded-xl border border-loss/40 bg-card p-6">
+            <div className="rounded-xl border border-loss/40 bg-muted/40 p-6">
               <p className="mb-1 text-xs font-bold uppercase tracking-widest text-loss">
                 Under kampanjen
               </p>
@@ -131,7 +131,7 @@ function Landing() {
                 borta.
               </p>
             </div>
-            <div className="rounded-xl border border-border bg-card p-6">
+            <div className="rounded-xl border border-border bg-muted/40 p-6">
               <p className="mb-1 text-xs font-bold uppercase tracking-widest text-muted-foreground">
                 Efter
               </p>
@@ -234,7 +234,7 @@ function Landing() {
             ].map((c) => (
               <div
                 key={c.label}
-                className="rounded-xl border border-border bg-card p-6"
+                className="rounded-xl border border-border bg-muted/40 p-6"
               >
                 <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
                   {c.label}
