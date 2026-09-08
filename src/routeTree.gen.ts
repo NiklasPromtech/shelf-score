@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AnalysRouteImport } from './routes/analys'
+import { Route as KonsolRouteImport } from './routes/konsol'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const AnalysRoute = AnalysRouteImport.update({
   path: '/analys',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KonsolRoute = KonsolRouteImport.update({
+  id: '/konsol',
+  path: '/konsol',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/analys': typeof AnalysRoute
+  '/konsol': typeof KonsolRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/analys': typeof AnalysRoute
+  '/konsol': typeof KonsolRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/analys': typeof AnalysRoute
+  '/konsol': typeof KonsolRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/analys'
+  fullPaths: '/' | '/analys' | '/konsol'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/analys'
-  id: '__root__' | '/' | '/analys'
+  to: '/' | '/analys' | '/konsol'
+  id: '__root__' | '/' | '/analys' | '/konsol'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnalysRoute: typeof AnalysRoute
+  KonsolRoute: typeof KonsolRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnalysRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/konsol': {
+      id: '/konsol'
+      path: '/konsol'
+      fullPath: '/konsol'
+      preLoaderRoute: typeof KonsolRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnalysRoute: AnalysRoute,
+  KonsolRoute: KonsolRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
