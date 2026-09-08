@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AnalysRouteImport } from './routes/analys'
 import { Route as KonsolRouteImport } from './routes/konsol'
+import { Route as LoggaInRouteImport } from './routes/logga-in'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +29,44 @@ const KonsolRoute = KonsolRouteImport.update({
   path: '/konsol',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoggaInRoute = LoggaInRouteImport.update({
+  id: '/logga-in',
+  path: '/logga-in',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/analys': typeof AnalysRoute
   '/konsol': typeof KonsolRoute
+  '/logga-in': typeof LoggaInRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/analys': typeof AnalysRoute
   '/konsol': typeof KonsolRoute
+  '/logga-in': typeof LoggaInRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/analys': typeof AnalysRoute
   '/konsol': typeof KonsolRoute
+  '/logga-in': typeof LoggaInRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/analys' | '/konsol'
+  fullPaths: '/' | '/analys' | '/konsol' | '/logga-in'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/analys' | '/konsol'
-  id: '__root__' | '/' | '/analys' | '/konsol'
+  to: '/' | '/analys' | '/konsol' | '/logga-in'
+  id: '__root__' | '/' | '/analys' | '/konsol' | '/logga-in'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnalysRoute: typeof AnalysRoute
   KonsolRoute: typeof KonsolRoute
+  LoggaInRoute: typeof LoggaInRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +92,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KonsolRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/logga-in': {
+      id: '/logga-in'
+      path: '/logga-in'
+      fullPath: '/logga-in'
+      preLoaderRoute: typeof LoggaInRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnalysRoute: AnalysRoute,
   KonsolRoute: KonsolRoute,
+  LoggaInRoute: LoggaInRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
