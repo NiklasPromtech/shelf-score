@@ -11,6 +11,15 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AnalysRouteImport } from './routes/analys'
+import { Route as KonsolRouteImport } from './routes/konsol'
+import { Route as LoggaInRouteImport } from './routes/logga-in'
+import { Route as KonsolIndexRouteImport } from './routes/konsol.index'
+import { Route as KonsolArbitrageRouteImport } from './routes/konsol.arbitrage'
+import { Route as KonsolBrandsRouteImport } from './routes/konsol.brands'
+import { Route as KonsolFoundryRouteImport } from './routes/konsol.foundry'
+import { Route as KonsolInsightsRouteImport } from './routes/konsol.insights'
+import { Route as KonsolOutreachRouteImport } from './routes/konsol.outreach'
+import { Route as KonsolStatusRouteImport } from './routes/konsol.status'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +31,137 @@ const AnalysRoute = AnalysRouteImport.update({
   path: '/analys',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KonsolRoute = KonsolRouteImport.update({
+  id: '/konsol',
+  path: '/konsol',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoggaInRoute = LoggaInRouteImport.update({
+  id: '/logga-in',
+  path: '/logga-in',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KonsolIndexRoute = KonsolIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => KonsolRoute,
+} as any)
+const KonsolArbitrageRoute = KonsolArbitrageRouteImport.update({
+  id: '/arbitrage',
+  path: '/arbitrage',
+  getParentRoute: () => KonsolRoute,
+} as any)
+const KonsolBrandsRoute = KonsolBrandsRouteImport.update({
+  id: '/brands',
+  path: '/brands',
+  getParentRoute: () => KonsolRoute,
+} as any)
+const KonsolFoundryRoute = KonsolFoundryRouteImport.update({
+  id: '/foundry',
+  path: '/foundry',
+  getParentRoute: () => KonsolRoute,
+} as any)
+const KonsolInsightsRoute = KonsolInsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => KonsolRoute,
+} as any)
+const KonsolOutreachRoute = KonsolOutreachRouteImport.update({
+  id: '/outreach',
+  path: '/outreach',
+  getParentRoute: () => KonsolRoute,
+} as any)
+const KonsolStatusRoute = KonsolStatusRouteImport.update({
+  id: '/status',
+  path: '/status',
+  getParentRoute: () => KonsolRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/analys': typeof AnalysRoute
+  '/konsol': typeof KonsolRouteWithChildren
+  '/logga-in': typeof LoggaInRoute
+  '/konsol/arbitrage': typeof KonsolArbitrageRoute
+  '/konsol/brands': typeof KonsolBrandsRoute
+  '/konsol/foundry': typeof KonsolFoundryRoute
+  '/konsol/insights': typeof KonsolInsightsRoute
+  '/konsol/outreach': typeof KonsolOutreachRoute
+  '/konsol/status': typeof KonsolStatusRoute
+  '/konsol/': typeof KonsolIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/analys': typeof AnalysRoute
+  '/logga-in': typeof LoggaInRoute
+  '/konsol/arbitrage': typeof KonsolArbitrageRoute
+  '/konsol/brands': typeof KonsolBrandsRoute
+  '/konsol/foundry': typeof KonsolFoundryRoute
+  '/konsol/insights': typeof KonsolInsightsRoute
+  '/konsol/outreach': typeof KonsolOutreachRoute
+  '/konsol/status': typeof KonsolStatusRoute
+  '/konsol': typeof KonsolIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/analys': typeof AnalysRoute
+  '/konsol': typeof KonsolRouteWithChildren
+  '/logga-in': typeof LoggaInRoute
+  '/konsol/arbitrage': typeof KonsolArbitrageRoute
+  '/konsol/brands': typeof KonsolBrandsRoute
+  '/konsol/foundry': typeof KonsolFoundryRoute
+  '/konsol/insights': typeof KonsolInsightsRoute
+  '/konsol/outreach': typeof KonsolOutreachRoute
+  '/konsol/status': typeof KonsolStatusRoute
+  '/konsol/': typeof KonsolIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/analys'
+  fullPaths:
+    | '/'
+    | '/analys'
+    | '/konsol'
+    | '/logga-in'
+    | '/konsol/arbitrage'
+    | '/konsol/brands'
+    | '/konsol/foundry'
+    | '/konsol/insights'
+    | '/konsol/outreach'
+    | '/konsol/status'
+    | '/konsol/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/analys'
-  id: '__root__' | '/' | '/analys'
+  to:
+    | '/'
+    | '/analys'
+    | '/logga-in'
+    | '/konsol/arbitrage'
+    | '/konsol/brands'
+    | '/konsol/foundry'
+    | '/konsol/insights'
+    | '/konsol/outreach'
+    | '/konsol/status'
+    | '/konsol'
+  id:
+    | '__root__'
+    | '/'
+    | '/analys'
+    | '/konsol'
+    | '/logga-in'
+    | '/konsol/arbitrage'
+    | '/konsol/brands'
+    | '/konsol/foundry'
+    | '/konsol/insights'
+    | '/konsol/outreach'
+    | '/konsol/status'
+    | '/konsol/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnalysRoute: typeof AnalysRoute
+  KonsolRoute: typeof KonsolRouteWithChildren
+  LoggaInRoute: typeof LoggaInRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +180,100 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnalysRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/konsol': {
+      id: '/konsol'
+      path: '/konsol'
+      fullPath: '/konsol'
+      preLoaderRoute: typeof KonsolRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/logga-in': {
+      id: '/logga-in'
+      path: '/logga-in'
+      fullPath: '/logga-in'
+      preLoaderRoute: typeof LoggaInRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/konsol/': {
+      id: '/konsol/'
+      path: '/'
+      fullPath: '/konsol/'
+      preLoaderRoute: typeof KonsolIndexRouteImport
+      parentRoute: typeof KonsolRoute
+    }
+    '/konsol/arbitrage': {
+      id: '/konsol/arbitrage'
+      path: '/arbitrage'
+      fullPath: '/konsol/arbitrage'
+      preLoaderRoute: typeof KonsolArbitrageRouteImport
+      parentRoute: typeof KonsolRoute
+    }
+    '/konsol/brands': {
+      id: '/konsol/brands'
+      path: '/brands'
+      fullPath: '/konsol/brands'
+      preLoaderRoute: typeof KonsolBrandsRouteImport
+      parentRoute: typeof KonsolRoute
+    }
+    '/konsol/foundry': {
+      id: '/konsol/foundry'
+      path: '/foundry'
+      fullPath: '/konsol/foundry'
+      preLoaderRoute: typeof KonsolFoundryRouteImport
+      parentRoute: typeof KonsolRoute
+    }
+    '/konsol/insights': {
+      id: '/konsol/insights'
+      path: '/insights'
+      fullPath: '/konsol/insights'
+      preLoaderRoute: typeof KonsolInsightsRouteImport
+      parentRoute: typeof KonsolRoute
+    }
+    '/konsol/outreach': {
+      id: '/konsol/outreach'
+      path: '/outreach'
+      fullPath: '/konsol/outreach'
+      preLoaderRoute: typeof KonsolOutreachRouteImport
+      parentRoute: typeof KonsolRoute
+    }
+    '/konsol/status': {
+      id: '/konsol/status'
+      path: '/status'
+      fullPath: '/konsol/status'
+      preLoaderRoute: typeof KonsolStatusRouteImport
+      parentRoute: typeof KonsolRoute
+    }
   }
 }
+
+interface KonsolRouteChildren {
+  KonsolArbitrageRoute: typeof KonsolArbitrageRoute
+  KonsolBrandsRoute: typeof KonsolBrandsRoute
+  KonsolFoundryRoute: typeof KonsolFoundryRoute
+  KonsolInsightsRoute: typeof KonsolInsightsRoute
+  KonsolOutreachRoute: typeof KonsolOutreachRoute
+  KonsolStatusRoute: typeof KonsolStatusRoute
+  KonsolIndexRoute: typeof KonsolIndexRoute
+}
+
+const KonsolRouteChildren: KonsolRouteChildren = {
+  KonsolArbitrageRoute: KonsolArbitrageRoute,
+  KonsolBrandsRoute: KonsolBrandsRoute,
+  KonsolFoundryRoute: KonsolFoundryRoute,
+  KonsolInsightsRoute: KonsolInsightsRoute,
+  KonsolOutreachRoute: KonsolOutreachRoute,
+  KonsolStatusRoute: KonsolStatusRoute,
+  KonsolIndexRoute: KonsolIndexRoute,
+}
+
+const KonsolRouteWithChildren =
+  KonsolRoute._addFileChildren(KonsolRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnalysRoute: AnalysRoute,
+  KonsolRoute: KonsolRouteWithChildren,
+  LoggaInRoute: LoggaInRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -33,6 +33,12 @@ export function SiteHeader() {
           <a href={MAILTO} className={linkClass}>
             Kontakt
           </a>
+          <Link
+            to="/logga-in"
+            className="rounded-lg border border-border px-3 py-1.5 text-sm font-medium transition-colors hover:bg-muted"
+          >
+            Logga in
+          </Link>
         </nav>
       </div>
     </header>
