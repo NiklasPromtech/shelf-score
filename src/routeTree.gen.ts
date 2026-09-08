@@ -14,6 +14,7 @@ import { Route as AnalysRouteImport } from './routes/analys'
 import { Route as KonsolRouteImport } from './routes/konsol'
 import { Route as LoggaInRouteImport } from './routes/logga-in'
 import { Route as KonsolIndexRouteImport } from './routes/konsol.index'
+import { Route as KonsolBrandsRouteImport } from './routes/konsol.brands'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,18 +41,25 @@ const KonsolIndexRoute = KonsolIndexRouteImport.update({
   path: '/',
   getParentRoute: () => KonsolRoute,
 } as any)
+const KonsolBrandsRoute = KonsolBrandsRouteImport.update({
+  id: '/brands',
+  path: '/brands',
+  getParentRoute: () => KonsolRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/analys': typeof AnalysRoute
   '/konsol': typeof KonsolRouteWithChildren
   '/logga-in': typeof LoggaInRoute
+  '/konsol/brands': typeof KonsolBrandsRoute
   '/konsol/': typeof KonsolIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/analys': typeof AnalysRoute
   '/logga-in': typeof LoggaInRoute
+  '/konsol/brands': typeof KonsolBrandsRoute
   '/konsol': typeof KonsolIndexRoute
 }
 export interface FileRoutesById {
@@ -60,14 +68,23 @@ export interface FileRoutesById {
   '/analys': typeof AnalysRoute
   '/konsol': typeof KonsolRouteWithChildren
   '/logga-in': typeof LoggaInRoute
+  '/konsol/brands': typeof KonsolBrandsRoute
   '/konsol/': typeof KonsolIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/analys' | '/konsol' | '/logga-in' | '/konsol/'
+  fullPaths:
+    '/' | '/analys' | '/konsol' | '/logga-in' | '/konsol/brands' | '/konsol/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/analys' | '/logga-in' | '/konsol'
-  id: '__root__' | '/' | '/analys' | '/konsol' | '/logga-in' | '/konsol/'
+  to: '/' | '/analys' | '/logga-in' | '/konsol/brands' | '/konsol'
+  id:
+    | '__root__'
+    | '/'
+    | '/analys'
+    | '/konsol'
+    | '/logga-in'
+    | '/konsol/brands'
+    | '/konsol/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -114,14 +131,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KonsolIndexRouteImport
       parentRoute: typeof KonsolRoute
     }
+    '/konsol/brands': {
+      id: '/konsol/brands'
+      path: '/brands'
+      fullPath: '/konsol/brands'
+      preLoaderRoute: typeof KonsolBrandsRouteImport
+      parentRoute: typeof KonsolRoute
+    }
   }
 }
 
 interface KonsolRouteChildren {
+  KonsolBrandsRoute: typeof KonsolBrandsRoute
   KonsolIndexRoute: typeof KonsolIndexRoute
 }
 
 const KonsolRouteChildren: KonsolRouteChildren = {
+  KonsolBrandsRoute: KonsolBrandsRoute,
   KonsolIndexRoute: KonsolIndexRoute,
 }
 
