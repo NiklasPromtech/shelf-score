@@ -62,7 +62,7 @@ function ConsoleLayout() {
             <Link
               key={n.to}
               to={n.to}
-              activeOptions={"exact" in n ? { exact: true } : undefined}
+              activeOptions={{ exact: "exact" in n }}
               className="shrink-0 rounded-lg border border-transparent px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted"
               activeProps={{
                 className:

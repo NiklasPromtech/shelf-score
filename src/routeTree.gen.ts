@@ -19,6 +19,7 @@ import { Route as KonsolBrandsRouteImport } from './routes/konsol.brands'
 import { Route as KonsolFoundryRouteImport } from './routes/konsol.foundry'
 import { Route as KonsolInsightsRouteImport } from './routes/konsol.insights'
 import { Route as KonsolOutreachRouteImport } from './routes/konsol.outreach'
+import { Route as KonsolStatusRouteImport } from './routes/konsol.status'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -70,6 +71,11 @@ const KonsolOutreachRoute = KonsolOutreachRouteImport.update({
   path: '/outreach',
   getParentRoute: () => KonsolRoute,
 } as any)
+const KonsolStatusRoute = KonsolStatusRouteImport.update({
+  id: '/status',
+  path: '/status',
+  getParentRoute: () => KonsolRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -81,6 +87,7 @@ export interface FileRoutesByFullPath {
   '/konsol/foundry': typeof KonsolFoundryRoute
   '/konsol/insights': typeof KonsolInsightsRoute
   '/konsol/outreach': typeof KonsolOutreachRoute
+  '/konsol/status': typeof KonsolStatusRoute
   '/konsol/': typeof KonsolIndexRoute
 }
 export interface FileRoutesByTo {
@@ -92,6 +99,7 @@ export interface FileRoutesByTo {
   '/konsol/foundry': typeof KonsolFoundryRoute
   '/konsol/insights': typeof KonsolInsightsRoute
   '/konsol/outreach': typeof KonsolOutreachRoute
+  '/konsol/status': typeof KonsolStatusRoute
   '/konsol': typeof KonsolIndexRoute
 }
 export interface FileRoutesById {
@@ -105,6 +113,7 @@ export interface FileRoutesById {
   '/konsol/foundry': typeof KonsolFoundryRoute
   '/konsol/insights': typeof KonsolInsightsRoute
   '/konsol/outreach': typeof KonsolOutreachRoute
+  '/konsol/status': typeof KonsolStatusRoute
   '/konsol/': typeof KonsolIndexRoute
 }
 export interface FileRouteTypes {
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/konsol/foundry'
     | '/konsol/insights'
     | '/konsol/outreach'
+    | '/konsol/status'
     | '/konsol/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
     | '/konsol/foundry'
     | '/konsol/insights'
     | '/konsol/outreach'
+    | '/konsol/status'
     | '/konsol'
   id:
     | '__root__'
@@ -142,6 +153,7 @@ export interface FileRouteTypes {
     | '/konsol/foundry'
     | '/konsol/insights'
     | '/konsol/outreach'
+    | '/konsol/status'
     | '/konsol/'
   fileRoutesById: FileRoutesById
 }
@@ -224,6 +236,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KonsolOutreachRouteImport
       parentRoute: typeof KonsolRoute
     }
+    '/konsol/status': {
+      id: '/konsol/status'
+      path: '/status'
+      fullPath: '/konsol/status'
+      preLoaderRoute: typeof KonsolStatusRouteImport
+      parentRoute: typeof KonsolRoute
+    }
   }
 }
 
@@ -233,6 +252,7 @@ interface KonsolRouteChildren {
   KonsolFoundryRoute: typeof KonsolFoundryRoute
   KonsolInsightsRoute: typeof KonsolInsightsRoute
   KonsolOutreachRoute: typeof KonsolOutreachRoute
+  KonsolStatusRoute: typeof KonsolStatusRoute
   KonsolIndexRoute: typeof KonsolIndexRoute
 }
 
@@ -242,6 +262,7 @@ const KonsolRouteChildren: KonsolRouteChildren = {
   KonsolFoundryRoute: KonsolFoundryRoute,
   KonsolInsightsRoute: KonsolInsightsRoute,
   KonsolOutreachRoute: KonsolOutreachRoute,
+  KonsolStatusRoute: KonsolStatusRoute,
   KonsolIndexRoute: KonsolIndexRoute,
 }
 
