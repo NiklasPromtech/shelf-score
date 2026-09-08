@@ -1,7 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-
-const EMAIL = "tommyandersson@gmail.com";
-const MAILTO = `mailto:${EMAIL}?subject=ShelfScore%20%E2%80%93%20lagerbortfall`;
+import { SiteHeader, EMAIL, MAILTO } from "@/components/site-header";
 
 export const Route = createFileRoute("/")({
   head: () => ({
