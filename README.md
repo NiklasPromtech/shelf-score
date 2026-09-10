@@ -1,42 +1,109 @@
-# Offer Insights Pro
+# ShelfScore
 
-I am making a page where we are scraping data from resellers, it is not a product yet, but I did realise that if Loreal would have used our service before they started a campaign on Kronan they would have generated an extra 600,000 in sales and lossely estimated another 100,000 SEK in recuring cisitors. 
+**Shelf intelligence for brands that sell through online resellers.**
 
-So this is what I have so far. 
+ShelfScore reverse-engineers how online retailers order the products on their
+category pages — and turns that into answers a brand will pay for. By watching
+rankings and stock levels day by day across several Nordic resellers, it measures
+how fast each product actually sells and where a brand is quietly losing revenue
+to empty shelves.
 
-Don't know how we present this, but feeling like if we orbanise this a little. 
+The core finding that drives the product: these shelves are sorted by
+**velocity** — what's selling right now — not by price or newness. So the whole
+system is built to measure sell-through (via daily stock depletion) and the
+levers that move it.
 
-The one thing I think have the most value is the Offer Analysis
+Three resellers are live today — **Apotea**, **Apotek Hjärtat**, **Kronans
+Apotek**, plus **Lyko** for pricing — and the architecture adds more by dropping
+in one new extractor per site; nothing downstream changes.
 
-Query is not really used
+---
 
-Status should be probably the last one, as that is not as much of a focus anymore, things are working. 
+## What it answers
 
-Foundry is really just something I was thinking could be used to assist companies find things they should offer
+Two questions a brand cares about:
 
-Outreach is basically just a way of seeing how much money companies are losing out on by not being in stock (something that could be fixed by a much more encovering with like a Pricerunner API) 
+1. **"Where am I losing revenue right now?"** — which of my products are out of
+   stock, or about to be, on shelves where they sell. Quantified in real terms:
+   money lost per day at the product's own measured sell-through rate, and the
+   cumulative loss until it's restocked. Because sell-through is *measured* rather
+   than guessed, "you're losing ~X kr/day on this SKU and it runs out in ~3 days"
+   is a real number.
 
-Arbitrage is a tool for me to see if I might be intersted in buying products at a discounted price and see it based on that the sales velocity is high enough and the price is low enough 
+2. **"What would grow my revenue?"** — the predicted upside of shelf moves: what
+   getting a product onto a category it's missing, or climbing the rank, is worth
+   in extra units per day, estimated from the rank→velocity curve observed across
+   the whole catalogue.
 
-Happy for you to help me figure out what the landing page should be and the offer over all and a fitting design
+Everything else — rank, share of shelf, competitor velocity, cross-channel,
+campaign analysis — is supporting evidence for those two.
 
-This project was built with [Lovable](https://lovable.dev).
+---
 
-## Build with Lovable
+## How it works
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/38e4a594-99d1-4275-bce7-70118e902a79).
+Three layers, one contract:
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
 ```
+Extractors  →  Harness  →  BigQuery  →  Console / Reports
+```
+
+1. **Extractors** — one small, pure `document → JSON` function per reseller and
+   surface (listing, product, …). All the site-specific messiness lives here, and
+   every extractor of a given type emits the *same* shape. That shared contract is
+   what makes everything downstream reseller-agnostic.
+
+2. **Harness** — shared runners that feed URLs to the extractors, flatten the
+   results to rows, and load them into BigQuery. Some sites are read headless with
+   a browser; others are read directly from their page-data JSON. Each run records
+   its own health so data-quality drift is caught early.
+
+3. **BigQuery** — flat, partitioned snapshot tables; all analysis lives in SQL
+   **views** on top. Rankings, brand maps, and — the heart of it — velocity and
+   lost-revenue estimates.
+
+On top sits a small **console** (an Express app): a live status dashboard, a
+plain-English → SQL helper, brand tools, campaign/offer analysis, and the
+client-facing shelf report.
+
+### Cadence
+
+Three clean tiers per reseller:
+
+- **Daily rank scrape** — the ranking time-series.
+- **Daily stock probe** — lightweight availability checks across the whole
+  catalogue; day-over-day depletion is the velocity signal.
+- **Monthly brand-map scrape** — the brand → product map.
+
+---
+
+## Repo layout
+
+```
+extractors/<reseller>/     pure document→JSON functions (the only site-specific code)
+harness/                   shared runners + helpers (fetch, load to BigQuery, run health)
+enrich/                    optional LLM product normalization (form / actives / claims)
+sql/                       BigQuery schema + analysis views
+app/                       the console (status dashboard, SQL runner, brand + campaign tools)
+inputs/<reseller>/         URL / path lists fed to the harness
+docs/                      the output contract every extractor must emit
+```
+
+## Running it
+
+```bash
+./setup-bq.sh                                      # create dataset + tables + views
+cd app && BQ_PROJECT=<project> node server.js      # console at localhost:4000
+cd harness && DRY_RUN=true node run-listings.js    # local dry run → out/*.ndjson
+```
+
+Runs on Google Cloud (Cloud Run jobs on a schedule, BigQuery for storage and
+analysis); the console deploys as a Cloud Run service.
+
+---
+
+## Status
+
+Working system, actively developed. Data is flowing daily across the live
+resellers; the current focus is turning the measured lost-revenue and campaign
+signals into brand-facing outreach.
