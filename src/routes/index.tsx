@@ -38,7 +38,7 @@ function Landing() {
           </div>
 
           <div className="space-y-6">
-            <h1 className="text-4xl font-bold leading-[1.1] tracking-tight md:text-6xl">
+            <h1 className="font-mono uppercase text-4xl font-bold leading-[1.1] tracking-tight md:text-6xl">
               Rogaine tappade{" "}
               <span className="font-mono text-loss">429&nbsp;525&nbsp;kr</span>{" "}
               på en vecka — för att hyllan var tom hos Apotea.
@@ -85,7 +85,7 @@ function Landing() {
             <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
               Ett räkneexempel
             </p>
-            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+            <h2 className="font-mono uppercase text-3xl font-bold tracking-tight md:text-4xl">
               Kampanjen som hyllan inte orkade med
             </h2>
             <p className="max-w-2xl text-muted-foreground">
@@ -145,7 +145,7 @@ function Landing() {
             <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
               Så funkar det
             </p>
-            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+            <h2 className="font-mono uppercase text-3xl font-bold tracking-tight md:text-4xl">
               Tre steg, varje dag
             </h2>
           </div>
@@ -187,7 +187,7 @@ function Landing() {
             <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
               Det här finns redan
             </p>
-            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+            <h2 className="font-mono uppercase text-3xl font-bold tracking-tight md:text-4xl">
               Inte en idé — en konsol som snurrar
             </h2>
           </div>
@@ -245,7 +245,7 @@ function Landing() {
             <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
               Vem ligger bakom?
             </p>
-            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+            <h2 className="font-mono uppercase text-3xl font-bold tracking-tight md:text-4xl">
               Hej, jag heter Niklas
             </h2>
           </div>

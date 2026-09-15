@@ -29,7 +29,7 @@ function LoginPage() {
           <Link to="/" className="text-sm font-bold tracking-tight">
             Shelf<span className="text-ok">Score</span>
           </Link>
-          <h1 className="text-2xl font-bold tracking-tight">Logga in</h1>
+          <h1 className="font-mono uppercase text-2xl font-bold tracking-tight">Logga in</h1>
           <p className="text-sm text-muted-foreground">
             Demoläge — inget lösenord behövs, allt innehåll är exempeldata.
           </p>

@@ -19,7 +19,7 @@ export function PageHead({
         <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
           {eyebrow}
         </p>
-        <h1 className="text-2xl font-bold tracking-tight md:text-3xl">{title}</h1>
+        <h1 className="font-mono uppercase text-2xl font-bold tracking-tight md:text-3xl">{title}</h1>
         {intro ? <p className="max-w-2xl text-sm text-muted-foreground">{intro}</p> : null}
       </div>
       {actions}
