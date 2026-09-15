@@ -2,6 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHead, Panel, Stat, Table, Tag } from "@/components/console-ui";
 
 export const Route = createFileRoute("/konsol/foundry")({
+  head: () => ({ meta: [
+    { title: "Foundry | ShelfScore Console" },
+    { name: "description", content: "Exempel på sortimentsluckor och potentiella nya listningar." },
+    { property: "og:title", content: "Foundry | ShelfScore Console" },
+    { property: "og:description", content: "Sortimentsförslag och potential i ShelfScore Console." },
+    { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },
+  ] }),
   component: Foundry,
 });
 

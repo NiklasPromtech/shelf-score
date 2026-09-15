@@ -2,6 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHead, Panel, Stat, Table, Tag, Bar } from "@/components/console-ui";
 
 export const Route = createFileRoute("/konsol/brands")({
+  head: () => ({ meta: [
+    { title: "Varumärken | ShelfScore Console" },
+    { name: "description", content: "Exempelvy över varumärkens sortiment, lagerhälsa och uteblivna försäljning." },
+    { property: "og:title", content: "Varumärken | ShelfScore Console" },
+    { property: "og:description", content: "Varumärken och lagerhälsa i ShelfScore Console." },
+    { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },
+  ] }),
   component: Brands,
 });
 

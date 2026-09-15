@@ -2,6 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHead, Panel, Stat, Table, Tag } from "@/components/console-ui";
 
 export const Route = createFileRoute("/konsol/outreach")({
+  head: () => ({ meta: [
+    { title: "Lagerbortfall | ShelfScore Console" },
+    { name: "description", content: "Exempelvy över utebliven försäljning och dialoger med varumärken." },
+    { property: "og:title", content: "Lagerbortfall | ShelfScore Console" },
+    { property: "og:description", content: "Utebliven försäljning och varumärkesdialoger i ShelfScore Console." },
+    { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },
+  ] }),
   component: Outreach,
 });
 

@@ -2,6 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHead, Panel, Stat, Table, Tag, Bar } from "@/components/console-ui";
 
 export const Route = createFileRoute("/konsol/")({
+  head: () => ({ meta: [
+    { title: "Kampanjanalys | ShelfScore Console" },
+    { name: "description", content: "Exempel på kampanjlyft, lagerrisk och beräknat försäljningsbortfall." },
+    { property: "og:title", content: "Kampanjanalys | ShelfScore Console" },
+    { property: "og:description", content: "Kampanjlyft och lagerrisk i ShelfScore Console." },
+    { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },
+  ] }),
   component: OfferAnalysis,
 });
 
