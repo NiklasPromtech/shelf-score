@@ -4,21 +4,21 @@ export const EMAIL = "tommyandersson@gmail.com";
 export const MAILTO = `mailto:${EMAIL}?subject=ShelfScore%20%E2%80%93%20lagerbortfall`;
 
 const linkClass =
-  "text-sm font-medium text-muted-foreground transition-colors hover:text-foreground";
+  "font-mono text-[11px] font-bold uppercase text-muted-foreground transition-colors hover:text-loss";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
-      <div className="mx-auto flex max-w-5xl items-center justify-between gap-6 px-6 py-4">
-        <Link to="/" className="text-sm font-bold tracking-tight">
-          Shelf<span className="text-ok">Score</span>
+    <header className="sticky top-0 z-40 border-b-2 border-foreground bg-background">
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6">
+        <Link to="/" className="font-mono text-sm font-bold uppercase">
+          Shelf<span className="text-loss">Score</span>
         </Link>
 
-        <nav className="flex items-center gap-5">
+        <nav className="flex flex-wrap items-center justify-end gap-x-4 gap-y-2">
           <Link
             to="/"
             className={linkClass}
-            activeProps={{ className: "text-sm font-medium text-foreground" }}
+            activeProps={{ className: "font-mono text-[11px] font-bold uppercase text-foreground underline decoration-2 underline-offset-4" }}
             activeOptions={{ exact: true }}
           >
             Översikt
@@ -26,16 +26,23 @@ export function SiteHeader() {
           <Link
             to="/analys"
             className={linkClass}
-            activeProps={{ className: "text-sm font-medium text-foreground" }}
+            activeProps={{ className: "font-mono text-[11px] font-bold uppercase text-foreground underline decoration-2 underline-offset-4" }}
           >
             Analys
+          </Link>
+          <Link
+            to="/branding-guidelines"
+            className={linkClass}
+            activeProps={{ className: "font-mono text-[11px] font-bold uppercase text-foreground underline decoration-2 underline-offset-4" }}
+          >
+            Guidelines
           </Link>
           <a href={MAILTO} className={linkClass}>
             Kontakt
           </a>
           <Link
             to="/logga-in"
-            className="rounded-lg border border-border px-3 py-1.5 text-sm font-medium transition-colors hover:bg-muted"
+            className="border border-foreground px-3 py-1.5 font-mono text-[11px] font-bold uppercase transition-colors hover:bg-foreground hover:text-background"
           >
             Logga in
           </Link>
