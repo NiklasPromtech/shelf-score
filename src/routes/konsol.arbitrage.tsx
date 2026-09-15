@@ -2,6 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHead, Panel, Stat, Table, Tag } from "@/components/console-ui";
 
 export const Route = createFileRoute("/konsol/arbitrage")({
+  head: () => ({ meta: [
+    { title: "Arbitrage | ShelfScore Console" },
+    { name: "description", content: "Exempel på rabatterade produkter bedömda efter marginal och försäljningstakt." },
+    { property: "og:title", content: "Arbitrage | ShelfScore Console" },
+    { property: "og:description", content: "Inköpslägen bedömda efter marginal och försäljningstakt." },
+    { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },
+  ] }),
   component: Arbitrage,
 });
 

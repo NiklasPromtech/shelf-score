@@ -2,6 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHead, Panel, Stat, Table, Tag, Bar } from "@/components/console-ui";
 
 export const Route = createFileRoute("/konsol/status")({
+  head: () => ({ meta: [
+    { title: "Status | ShelfScore Console" },
+    { name: "description", content: "Exempelvy över datatäckning, senaste avläsning och driftstatus." },
+    { property: "og:title", content: "Status | ShelfScore Console" },
+    { property: "og:description", content: "Datatäckning och driftstatus i ShelfScore Console." },
+    { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },
+  ] }),
   component: Status,
 });
 

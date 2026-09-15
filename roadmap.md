@@ -1,4 +1,4 @@
-- [ ] Bygg om Analys i vald finansiell rapportstil
-- [ ] Skapa Branding Guidelines med levande exempel
-- [ ] Lägg till guidelines i menyn och uppdatera typografi
-- [ ] Verifiera desktop, mobil, länkar och metadata
+- [x] Bygg om Analys i vald finansiell rapportstil
+- [x] Skapa Branding Guidelines med levande exempel
+- [x] Lägg till guidelines i menyn och uppdatera typografi
+- [x] Verifiera desktop, mobil, länkar och metadata
