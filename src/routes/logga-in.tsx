@@ -29,7 +29,7 @@ function LoginPage() {
           <Link to="/" className="text-sm font-bold tracking-tight">
             Shelf<span className="text-ok">Score</span>
           </Link>
-          <h1 className="text-2xl font-bold tracking-tight">Logga in</h1>
+          <h1 className="font-mono uppercase text-2xl font-bold tracking-tight">Logga in</h1>
           <p className="text-sm text-muted-foreground">
             Demoläge — inget lösenord behövs, allt innehåll är exempeldata.
           </p>
@@ -50,7 +50,7 @@ function LoginPage() {
               id="email"
               type="email"
               defaultValue="niklas@shelfscore.se"
-              className="w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm outline-none focus:border-foreground"
+              className="w-full rounded-none border-2 border-foreground bg-background px-3 py-2.5 text-sm outline-none focus:border-foreground"
             />
           </div>
           <div className="space-y-1.5">
@@ -61,12 +61,12 @@ function LoginPage() {
               id="password"
               type="password"
               defaultValue="demo1234"
-              className="w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm outline-none focus:border-foreground"
+              className="w-full rounded-none border-2 border-foreground bg-background px-3 py-2.5 text-sm outline-none focus:border-foreground"
             />
           </div>
           <button
             type="submit"
-            className="w-full rounded-lg bg-foreground px-4 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
+            className="w-full rounded-none bg-foreground px-4 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
           >
             Logga in
           </button>

@@ -37,6 +37,13 @@ export function SiteHeader() {
           >
             Guidelines
           </Link>
+          <Link
+            to="/rorelse"
+            className={linkClass}
+            activeProps={{ className: "font-mono text-[11px] font-bold uppercase text-foreground underline decoration-2 underline-offset-4" }}
+          >
+            Rörelse
+          </Link>
           <a href={MAILTO} className={linkClass}>
             Kontakt
           </a>

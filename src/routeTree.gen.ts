@@ -14,6 +14,7 @@ import { Route as AnalysRouteImport } from './routes/analys'
 import { Route as BrandingGuidelinesRouteImport } from './routes/branding-guidelines'
 import { Route as KonsolRouteImport } from './routes/konsol'
 import { Route as LoggaInRouteImport } from './routes/logga-in'
+import { Route as RorelseRouteImport } from './routes/rorelse'
 import { Route as KonsolIndexRouteImport } from './routes/konsol.index'
 import { Route as KonsolArbitrageRouteImport } from './routes/konsol.arbitrage'
 import { Route as KonsolBrandsRouteImport } from './routes/konsol.brands'
@@ -45,6 +46,11 @@ const KonsolRoute = KonsolRouteImport.update({
 const LoggaInRoute = LoggaInRouteImport.update({
   id: '/logga-in',
   path: '/logga-in',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RorelseRoute = RorelseRouteImport.update({
+  id: '/rorelse',
+  path: '/rorelse',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KonsolIndexRoute = KonsolIndexRouteImport.update({
@@ -89,6 +95,7 @@ export interface FileRoutesByFullPath {
   '/branding-guidelines': typeof BrandingGuidelinesRoute
   '/konsol': typeof KonsolRouteWithChildren
   '/logga-in': typeof LoggaInRoute
+  '/rorelse': typeof RorelseRoute
   '/konsol/arbitrage': typeof KonsolArbitrageRoute
   '/konsol/brands': typeof KonsolBrandsRoute
   '/konsol/foundry': typeof KonsolFoundryRoute
@@ -102,6 +109,7 @@ export interface FileRoutesByTo {
   '/analys': typeof AnalysRoute
   '/branding-guidelines': typeof BrandingGuidelinesRoute
   '/logga-in': typeof LoggaInRoute
+  '/rorelse': typeof RorelseRoute
   '/konsol/arbitrage': typeof KonsolArbitrageRoute
   '/konsol/brands': typeof KonsolBrandsRoute
   '/konsol/foundry': typeof KonsolFoundryRoute
@@ -117,6 +125,7 @@ export interface FileRoutesById {
   '/branding-guidelines': typeof BrandingGuidelinesRoute
   '/konsol': typeof KonsolRouteWithChildren
   '/logga-in': typeof LoggaInRoute
+  '/rorelse': typeof RorelseRoute
   '/konsol/arbitrage': typeof KonsolArbitrageRoute
   '/konsol/brands': typeof KonsolBrandsRoute
   '/konsol/foundry': typeof KonsolFoundryRoute
@@ -133,6 +142,7 @@ export interface FileRouteTypes {
     | '/branding-guidelines'
     | '/konsol'
     | '/logga-in'
+    | '/rorelse'
     | '/konsol/arbitrage'
     | '/konsol/brands'
     | '/konsol/foundry'
@@ -146,6 +156,7 @@ export interface FileRouteTypes {
     | '/analys'
     | '/branding-guidelines'
     | '/logga-in'
+    | '/rorelse'
     | '/konsol/arbitrage'
     | '/konsol/brands'
     | '/konsol/foundry'
@@ -160,6 +171,7 @@ export interface FileRouteTypes {
     | '/branding-guidelines'
     | '/konsol'
     | '/logga-in'
+    | '/rorelse'
     | '/konsol/arbitrage'
     | '/konsol/brands'
     | '/konsol/foundry'
@@ -175,6 +187,7 @@ export interface RootRouteChildren {
   BrandingGuidelinesRoute: typeof BrandingGuidelinesRoute
   KonsolRoute: typeof KonsolRouteWithChildren
   LoggaInRoute: typeof LoggaInRoute
+  RorelseRoute: typeof RorelseRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -212,6 +225,13 @@ declare module '@tanstack/react-router' {
       path: '/logga-in'
       fullPath: '/logga-in'
       preLoaderRoute: typeof LoggaInRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rorelse': {
+      id: '/rorelse'
+      path: '/rorelse'
+      fullPath: '/rorelse'
+      preLoaderRoute: typeof RorelseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/konsol/': {
@@ -295,6 +315,7 @@ const rootRouteChildren: RootRouteChildren = {
   BrandingGuidelinesRoute: BrandingGuidelinesRoute,
   KonsolRoute: KonsolRouteWithChildren,
   LoggaInRoute: LoggaInRoute,
+  RorelseRoute: RorelseRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

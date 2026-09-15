@@ -34,13 +34,13 @@ const nav = [
 function ConsoleLayout() {
   return (
     <div className="min-h-screen bg-background font-sans text-foreground antialiased">
-      <header className="border-b border-border">
+      <header className="border-b-2 border-foreground">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
           <div className="flex items-center gap-3">
             <Link to="/" className="text-sm font-bold tracking-tight">
               Shelf<span className="text-ok">Score</span>
             </Link>
-            <span className="rounded-full border border-border px-2.5 py-0.5 text-xs font-medium text-muted-foreground">
+            <span className="rounded-none border-2 border-foreground px-2.5 py-0.5 text-xs font-medium text-muted-foreground">
               Console · exempeldata
             </span>
           </div>
@@ -63,10 +63,10 @@ function ConsoleLayout() {
               key={n.to}
               to={n.to}
               activeOptions={{ exact: "exact" in n }}
-              className="shrink-0 rounded-lg border border-transparent px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted"
+              className="shrink-0 rounded-none border border-transparent px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted"
               activeProps={{
                 className:
-                  "shrink-0 rounded-lg border border-border bg-muted px-3 py-2 text-sm font-medium text-foreground",
+                  "shrink-0 rounded-none border-2 border-foreground bg-muted px-3 py-2 text-sm font-medium text-foreground",
               }}
             >
               <span className="block whitespace-nowrap">{n.label}</span>
