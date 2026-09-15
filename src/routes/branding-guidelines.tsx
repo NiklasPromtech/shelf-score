@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { SiteHeader } from "@/components/site-header";
 
 export const Route = createFileRoute("/branding-guidelines")({
@@ -20,6 +21,94 @@ const colors = [
   ["Linjegrå", "#D9D9D6", "Sekundära regler och kontext"], ["Signalröd", "#C92A2A", "Tapp, risk och slut i lager"],
 ];
 
+const BRAND_SPEC = `ShelfScore – varumärkesspecifikation (skicka detta till den som bygger sidorna)
+
+VARUMÄRKESIDÉ
+- ShelfScore ska kännas som en granskad finansiell rapport: tydlig, exakt, saklig och lugn.
+- Grundprincipen är “bevis före dekor”. Formen ska göra datan lättare att förstå, aldrig mer dramatisk än underlaget.
+- Varje vy börjar med en slutsats i vanlig svenska och ett tydligt affärskritiskt tal.
+- Struktur, linjer, tabelljustering och konsekvent typografi bär identiteten.
+
+FÄRG
+- Papper: #FFFFFF. Används för bakgrund och luft.
+- Trycksvärta: #101114. Används för fakta, rubriker, siffror och huvudlinjer.
+- Linjegrå: #D9D9D6. Används för sekundära linjer, jämförelser och kontext.
+- Signalröd: #C92A2A. Används ENDAST för ekonomiskt tapp, risk, negativ avvikelse eller noll i lager.
+- Rött är aldrig dekor. Om allt är rött betyder inget rött någonting.
+- Inga gradienter, glans, genomskinliga färgskikt eller fler konkurrerande accentfärger.
+
+TYPOGRAFI
+- Space Mono 700: huvudrubriker, sektionsrubriker, etiketter, tabellhuvuden och alla siffror.
+- Rubik 400: brödtext, förklaringar och längre resonemang. Rubik 600–700 får användas sparsamt för betoning.
+- Rubriker och korta etiketter skrivs med versaler. Brödtext skrivs normalt, aldrig som teknisk jargong.
+- Skriv konkret: “429 525 kr i beräknat bortfall under sex dagar”, inte abstrakta superlativ.
+- Svenska tusentalsavstånd: 1 284 300 kr. Aldrig komma som tusentalsavskiljare.
+- Varje tal märks som fakta, prognos eller exempel.
+
+FORM OCH RASTER
+- Hårda kanter: 1–2 px linjer och 0–4 px hörnradie.
+- Inga mjuka skuggor, kapslar, flytande kort, bokeh, dekorativa former eller 3D-effekter.
+- Sektioner möts kant i kant med linjer. Lägg inte kort inuti kort.
+- Använd tydliga kolumnraster, konsekventa marginaler och generöst tomrum.
+- En sida har en H1. Numrera rapportavsnitt 01, 02, 03 och så vidare.
+- Endast en sak per vy får kräva uppmärksamhet.
+
+LOGOTYP OCH AVSÄNDARE
+- Skriv ordmärket som ShelfScore. “Shelf” i trycksvärta och “Score” i signalrött när färg används.
+- Ordmärket sätts i Space Mono 700 och ska vara tydligt men inte större än rapportens slutsats.
+- Lägg alltid till tydlig rapportavsändare, period, status och källa där det är relevant.
+- Förvräng, skugga, luta eller placera aldrig ordmärket i en kapsel.
+
+KNAPPAR OCH LÄNKAR
+- Primär handling: rektangulär svart yta, vit Space Mono-text och högst 4 px radie.
+- Vid fokus eller pekning får primär handling bli signalröd om handlingen rör analysens slutsats.
+- Sekundära handlingar använder vit bakgrund och 1–2 px svart linje.
+- Textlänkar är korta och tydliga. Aktiv navigering markeras med rak understrykning.
+- Undvik flera likvärdiga huvudknappar i samma vy.
+
+TABELLER
+- Rubriker och text vänsterställs. Alla siffror högerställs och sätts i Space Mono.
+- Tabellhuvudet är svart med vit text. Rader separeras med raka 1 px-linjer.
+- Signalrött används endast i den cell eller rad som faktiskt visar tapp eller risk.
+- Behåll kolumnjämförelsen. På liten skärm får breda datatabeller rulla inom sin egen yta.
+- Visa enhet direkt med värdet: kr, %, dagar eller SKU.
+
+DIAGRAM
+- Varje diagram ska besvara en tydlig fråga och bära en enda slutsats.
+- Baslinje, axel och jämförelsevärde ska vara synliga innan data animeras.
+- Svart visar observerade värden. Grått visar kontext, prognos eller jämförelse. Rött visar brist, risk eller bortfall.
+- Undvik 3D-diagram, dekorativa färgskalor, dubbla axlar och rörelse utan informationsvärde.
+- Diagrammet ska ha ett begripligt statiskt slutläge som kan skärmdumpas.
+
+SIDSTRUKTUR
+- Rapporthuvud: avsändare, rapport-ID, period, omfattning och datastatus.
+- Slutsats: viktigaste affärstalet först, följt av en kort förklaring.
+- Underlag: tabell, tidslinje eller diagram som visar hur slutsatsen räknats fram.
+- Konsekvens: vad tappet eller möjligheten betyder för varumärket.
+- Nästa steg: en tydlig handling eller kontakt, utan aggressivt säljspråk.
+
+TONALITET
+- Saklig, direkt och lugn. Skriv som en analytiker, inte som en reklambyrå.
+- Visa reservationer öppet: “beräknat”, “exempeldata”, period och källa.
+- Undvik buzzwords, vaga löften, utropstecken och påståenden som datan inte stöder.
+- Led med affärskonsekvensen, förklara därefter metoden.
+
+MOBIL OCH TILLGÄNGLIGHET
+- Mobil använder en kolumn. Innehåll får aldrig överlappa eller bli avklippt.
+- Brödtext och huvudtal ska kunna läsas utan zoom. Interaktiva ytor ska vara minst 44 px höga.
+- Kontrast minst 4,5:1 för all text. Röd text används på vit bakgrund, aldrig på svart.
+- Färg får aldrig vara den enda betydelsebäraren; komplettera med ord, symbol eller etikett.
+- Vid prefers-reduced-motion visas alltid animationens färdiga slutläge direkt.
+
+KVALITETSKONTROLL
+- Förstår en kund slutsatsen inom tio sekunder?
+- Finns bara en primär signal per vy?
+- Är varje siffra märkt som fakta, prognos eller exempel?
+- Är siffror högerställda och skrivna med svenska tusentalsavstånd?
+- Är rött reserverat för risk, tapp och noll lager?
+- Fungerar sidan i en kolumn på mobil och som ett statiskt dokument utan animation?
+`;
+
 function GuideSection({ number, title, intro, children }: { number: string; title: string; intro: string; children: React.ReactNode }) {
   return (
     <section className="border-t-2 border-foreground py-12 md:py-16">
@@ -37,6 +126,14 @@ function DoDont({ good, bad }: { good: string; bad: string }) {
 }
 
 function BrandingGuidelines() {
+  const [copied, setCopied] = useState(false);
+
+  const copy = async () => {
+    await navigator.clipboard.writeText(BRAND_SPEC);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
@@ -120,6 +217,18 @@ function BrandingGuidelines() {
           <ol className="border-2 border-foreground font-mono text-sm uppercase">{[
             "Förstår en kund slutsatsen på tio sekunder?", "Finns bara en primär signal per vy?", "Är varje siffra märkt som fakta, prognos eller exempel?", "Fungerar tabeller utan horisontell krock på mobil?", "Finns ett statiskt slutläge utan rörelse?", "Är rött reserverat för risk och tapp?",
           ].map((item, index) => <li key={item} className="grid grid-cols-[3rem_1fr] border-b border-foreground last:border-b-0"><span className="border-r border-foreground p-4 text-loss">{String(index + 1).padStart(2, "0")}</span><span className="p-4">{item}</span></li>)}</ol>
+        </GuideSection>
+        <GuideSection number="10" title="Specifikation att skicka vidare" intro="Kopiera hela texten och ge den till den som bygger en ShelfScore-sida, rapport eller presentation. Den sammanfattar systemet utan att mottagaren behöver läsa hela guiden.">
+          <button
+            type="button"
+            onClick={copy}
+            className="mb-5 inline-flex min-h-12 items-center bg-foreground px-5 font-mono text-xs font-bold uppercase text-background transition-colors hover:bg-loss"
+          >
+            {copied ? "Kopierad ✓" : "Kopiera varumärkesspecifikationen"}
+          </button>
+          <pre className="overflow-x-auto whitespace-pre-wrap border-2 border-foreground bg-muted/40 p-5 font-mono text-[11px] leading-5">
+            {BRAND_SPEC}
+          </pre>
         </GuideSection>
         <footer className="flex flex-wrap justify-between gap-3 border-t-2 border-foreground pt-4 font-mono text-[10px] uppercase text-muted-foreground"><span>ShelfScore / Branding Guidelines</span><span>Bevis före dekor</span></footer>
       </main>
