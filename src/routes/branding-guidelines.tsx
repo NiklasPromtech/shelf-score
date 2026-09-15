@@ -129,7 +129,18 @@ function BrandingGuidelines() {
   const [copied, setCopied] = useState(false);
 
   const copy = async () => {
-    await navigator.clipboard.writeText(BRAND_SPEC);
+    try {
+      await navigator.clipboard.writeText(BRAND_SPEC);
+    } catch {
+      const textarea = document.createElement("textarea");
+      textarea.value = BRAND_SPEC;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      textarea.remove();
+    }
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
