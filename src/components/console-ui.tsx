@@ -39,7 +39,7 @@ export function Stat({
   tone?: "neutral" | "ok" | "loss";
 }) {
   return (
-    <div className="rounded-xl border border-border bg-muted/40 p-5">
+    <div className="rounded-none border-2 border-foreground bg-muted/40 p-5">
       <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
         {label}
       </p>
@@ -65,8 +65,8 @@ export function Panel({
   children: ReactNode;
 }) {
   return (
-    <section className="rounded-xl border border-border">
-      <header className="flex flex-wrap items-baseline justify-between gap-2 border-b border-border px-5 py-4">
+    <section className="rounded-none border-2 border-foreground">
+      <header className="flex flex-wrap items-baseline justify-between gap-2 border-b-2 border-foreground px-5 py-4">
         <h2 className="text-sm font-bold uppercase tracking-widest">{title}</h2>
         {hint ? <span className="text-xs text-muted-foreground">{hint}</span> : null}
       </header>
@@ -96,7 +96,7 @@ export function Table({
         </thead>
         <tbody>
           {rows.map((r, ri) => (
-            <tr key={ri} className="border-t border-border">
+            <tr key={ri} className="border-t-2 border-foreground">
               {r.map((c, ci) => (
                 <td key={ci} className={`py-3 ${ci === 0 ? "font-medium" : "px-3"}`}>
                   {c}
@@ -112,9 +112,9 @@ export function Table({
 
 export function Bar({ pct, tone = "ok" }: { pct: number; tone?: "ok" | "loss" }) {
   return (
-    <div className="h-2 w-full min-w-24 rounded-full bg-muted">
+    <div className="h-2 w-full min-w-24 rounded-none bg-muted">
       <div
-        className={`h-2 rounded-full ${tone === "loss" ? "bg-loss" : "bg-ok"}`}
+        className={`h-2 rounded-none ${tone === "loss" ? "bg-loss" : "bg-ok"}`}
         style={{ width: `${Math.min(100, pct)}%` }}
       />
     </div>
@@ -135,7 +135,7 @@ export function Tag({
         ? "border-loss/40 text-loss"
         : "border-border text-muted-foreground";
   return (
-    <span className={`inline-flex rounded-full border px-2.5 py-0.5 text-xs font-medium ${cls}`}>
+    <span className={`inline-flex rounded-none border px-2.5 py-0.5 text-xs font-medium ${cls}`}>
       {children}
     </span>
   );

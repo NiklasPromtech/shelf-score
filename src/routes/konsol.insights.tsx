@@ -57,7 +57,7 @@ function Insights() {
       <Panel title="Kategoritrender" hint="Mot föregående vecka">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {categories.map((c) => (
-            <div key={c.name} className="rounded-lg border border-border p-4">
+            <div key={c.name} className="rounded-none border-2 border-foreground p-4">
               <p className="text-sm font-medium">{c.name}</p>
               <p
                 className={`mt-1 font-mono text-xl font-bold ${

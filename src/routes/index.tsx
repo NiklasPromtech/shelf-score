@@ -53,7 +53,7 @@ function Landing() {
           <div className="flex flex-col items-start gap-6 pt-4 sm:flex-row sm:items-center">
             <a
               href={MAILTO}
-              className="rounded-lg bg-foreground px-8 py-4 font-medium text-background transition-opacity hover:opacity-90"
+              className="rounded-none bg-foreground px-8 py-4 font-medium text-background transition-opacity hover:opacity-90"
             >
               Bolla det här med mig
             </a>
@@ -65,7 +65,7 @@ function Landing() {
             </div>
           </div>
 
-          <div className="border-t border-border pt-12">
+          <div className="border-t-2 border-foreground pt-12">
             <p className="mb-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">
               Bevakar dagligen
             </p>
@@ -80,7 +80,7 @@ function Landing() {
         </section>
 
         {/* L'Oréal case */}
-        <section className="space-y-10 border-t border-border py-16 md:py-24">
+        <section className="space-y-10 border-t-2 border-foreground py-16 md:py-24">
           <div className="space-y-3">
             <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
               Ett räkneexempel
@@ -96,7 +96,7 @@ function Landing() {
           </div>
 
           <div className="grid gap-4 md:grid-cols-3">
-            <div className="rounded-xl border border-border bg-muted/40 p-6">
+            <div className="rounded-none border-2 border-foreground bg-muted/40 p-6">
               <p className="mb-1 text-xs font-bold uppercase tracking-widest text-ok">
                 Före
               </p>
@@ -106,7 +106,7 @@ function Landing() {
                 brukar.
               </p>
             </div>
-            <div className="rounded-xl border border-loss/40 bg-muted/40 p-6">
+            <div className="rounded-none border border-loss/40 bg-muted/40 p-6">
               <p className="mb-1 text-xs font-bold uppercase tracking-widest text-loss">
                 Under kampanjen
               </p>
@@ -118,7 +118,7 @@ function Landing() {
                 borta.
               </p>
             </div>
-            <div className="rounded-xl border border-border bg-muted/40 p-6">
+            <div className="rounded-none border-2 border-foreground bg-muted/40 p-6">
               <p className="mb-1 text-xs font-bold uppercase tracking-widest text-muted-foreground">
                 Efter
               </p>
@@ -140,7 +140,7 @@ function Landing() {
         </section>
 
         {/* How it works */}
-        <section className="space-y-10 border-t border-border py-16 md:py-24">
+        <section className="space-y-10 border-t-2 border-foreground py-16 md:py-24">
           <div className="space-y-3">
             <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
               Så funkar det
@@ -182,7 +182,7 @@ function Landing() {
         </section>
 
         {/* What already exists */}
-        <section className="space-y-10 border-t border-border py-16 md:py-24">
+        <section className="space-y-10 border-t-2 border-foreground py-16 md:py-24">
           <div className="space-y-3">
             <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
               Det här finns redan
@@ -221,7 +221,7 @@ function Landing() {
             ].map((c) => (
               <div
                 key={c.label}
-                className="rounded-xl border border-border bg-muted/40 p-6"
+                className="rounded-none border-2 border-foreground bg-muted/40 p-6"
               >
                 <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
                   {c.label}
@@ -240,7 +240,7 @@ function Landing() {
         </section>
 
         {/* Personal note */}
-        <section className="space-y-6 border-t border-border py-16 md:py-24">
+        <section className="space-y-6 border-t-2 border-foreground py-16 md:py-24">
           <div className="space-y-3">
             <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
               Vem ligger bakom?
@@ -264,14 +264,14 @@ function Landing() {
           </div>
           <a
             href={MAILTO}
-            className="inline-flex rounded-lg bg-foreground px-8 py-4 font-medium text-background transition-opacity hover:opacity-90"
+            className="inline-flex rounded-none bg-foreground px-8 py-4 font-medium text-background transition-opacity hover:opacity-90"
           >
             Svara på några rader
           </a>
         </section>
       </main>
 
-      <footer className="border-t border-border">
+      <footer className="border-t-2 border-foreground">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-8 text-sm text-muted-foreground">
           <span>
             Shelf<span className="text-ok">Score</span> · Ett soloprojekt av
