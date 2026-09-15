@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AnalysRouteImport } from './routes/analys'
+import { Route as BrandingGuidelinesRouteImport } from './routes/branding-guidelines'
 import { Route as KonsolRouteImport } from './routes/konsol'
 import { Route as LoggaInRouteImport } from './routes/logga-in'
 import { Route as KonsolIndexRouteImport } from './routes/konsol.index'
@@ -29,6 +30,11 @@ const IndexRoute = IndexRouteImport.update({
 const AnalysRoute = AnalysRouteImport.update({
   id: '/analys',
   path: '/analys',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrandingGuidelinesRoute = BrandingGuidelinesRouteImport.update({
+  id: '/branding-guidelines',
+  path: '/branding-guidelines',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KonsolRoute = KonsolRouteImport.update({
@@ -80,6 +86,7 @@ const KonsolStatusRoute = KonsolStatusRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/analys': typeof AnalysRoute
+  '/branding-guidelines': typeof BrandingGuidelinesRoute
   '/konsol': typeof KonsolRouteWithChildren
   '/logga-in': typeof LoggaInRoute
   '/konsol/arbitrage': typeof KonsolArbitrageRoute
@@ -93,6 +100,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/analys': typeof AnalysRoute
+  '/branding-guidelines': typeof BrandingGuidelinesRoute
   '/logga-in': typeof LoggaInRoute
   '/konsol/arbitrage': typeof KonsolArbitrageRoute
   '/konsol/brands': typeof KonsolBrandsRoute
@@ -106,6 +114,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/analys': typeof AnalysRoute
+  '/branding-guidelines': typeof BrandingGuidelinesRoute
   '/konsol': typeof KonsolRouteWithChildren
   '/logga-in': typeof LoggaInRoute
   '/konsol/arbitrage': typeof KonsolArbitrageRoute
@@ -121,6 +130,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/analys'
+    | '/branding-guidelines'
     | '/konsol'
     | '/logga-in'
     | '/konsol/arbitrage'
@@ -134,6 +144,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/analys'
+    | '/branding-guidelines'
     | '/logga-in'
     | '/konsol/arbitrage'
     | '/konsol/brands'
@@ -146,6 +157,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/analys'
+    | '/branding-guidelines'
     | '/konsol'
     | '/logga-in'
     | '/konsol/arbitrage'
@@ -160,6 +172,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnalysRoute: typeof AnalysRoute
+  BrandingGuidelinesRoute: typeof BrandingGuidelinesRoute
   KonsolRoute: typeof KonsolRouteWithChildren
   LoggaInRoute: typeof LoggaInRoute
 }
@@ -178,6 +191,13 @@ declare module '@tanstack/react-router' {
       path: '/analys'
       fullPath: '/analys'
       preLoaderRoute: typeof AnalysRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/branding-guidelines': {
+      id: '/branding-guidelines'
+      path: '/branding-guidelines'
+      fullPath: '/branding-guidelines'
+      preLoaderRoute: typeof BrandingGuidelinesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/konsol': {
@@ -272,6 +292,7 @@ const KonsolRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnalysRoute: AnalysRoute,
+  BrandingGuidelinesRoute: BrandingGuidelinesRoute,
   KonsolRoute: KonsolRouteWithChildren,
   LoggaInRoute: LoggaInRoute,
 }
